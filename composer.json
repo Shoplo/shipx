@@ -1,0 +1,30 @@
+{
+  "name": "shoplo/shipx",
+  "type": "library",
+  "description": "ShipX PHP Client",
+  "keywords": [
+    "shoplo",
+    "shipx",
+    "inpost"
+  ],
+  "homepage": "http://github.com/Shoplo/shipx",
+  "license": "MIT",
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/oauth-subscriber": "^0.3.0",
+    "jms/serializer": "^1.13"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shoplo\\ShipX\\": "src/Shoplo/ShipX"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}
