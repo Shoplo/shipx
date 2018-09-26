@@ -25,34 +25,15 @@ class ShipXClient
     /** @var string */
     public $organizationId;
 
-    /** @var string */
-    public $apiBaseUri;
-
     /**
      * ShipXClient constructor.
      * @param ShipXAdapterInterface $requestAdapter
      * @param Serializer $serializer
-     * @param string $apiBaseUri
      */
-    public function __construct(ShipXAdapterInterface $requestAdapter, Serializer $serializer, $apiBaseUri)
+    public function __construct(ShipXAdapterInterface $requestAdapter, Serializer $serializer)
     {
         $this->requestAdapter = $requestAdapter;
         $this->serializer     = $serializer;
-        $this->apiBaseUri     = $apiBaseUri;
-    }
-
-    public function initClient($config, $accessToken, $organizationId = null)
-    {
-        $this->organizationId = $organizationId;
-
-        $guzzleAuthConfig = [
-            'base_uri' => $config['apiBaseUrl'],
-        ];
-
-        $this->requestAdapter = new GuzzleAdapter(
-            new \GuzzleHttp\Client($guzzleAuthConfig)
-        );
-        $this->requestAdapter->setAccessToken($accessToken);
     }
 
     public function getPoints()
