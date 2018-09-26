@@ -40,12 +40,12 @@ class OrganizationResponse extends BaseModelResponse
     public $taxId;
     /**
      * @var \DateTime
-     * @Serializer\Type("DateTime<'', '', 'Y-m-d H:i:s'>")
+     * @Serializer\Type("DateTime<'', '', 'Y-m-d\TH:i:s.uP'>")
      */
     public $createdAt;
     /**
      * @var \DateTime
-     * @Serializer\Type("DateTime<'', '', 'Y-m-d H:i:s'>")
+     * @Serializer\Type("DateTime<'', '', 'Y-m-d\TH:i:s.uP'>")
      */
     public $updatedAt;
     /**

@@ -45,7 +45,6 @@ class GuzzleAdapter implements ShipXAdapterInterface
     public function get($url, $parameters = [], $headers = [])
     {
         $headers = array_merge($headers, $this->getHeaders());
-
         try {
             $rsp = $this->guzzle->request(
                 'GET',
@@ -55,7 +54,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 ]
             );
 
-            return json_decode($rsp->getBody()->getContents(), true);
+            return $rsp->getBody()->getContents();
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             throw $e;
         }
