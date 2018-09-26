@@ -6,7 +6,7 @@
  * Time: 08:10
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -14,37 +14,37 @@ class ShipmentRequest
 {
     /**
      * @var ReceiverRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\ReceiverRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\ReceiverRequest")
      */
     public $receiver;
 
     /**
      * @var SenderRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\SenderRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\SenderRequest")
      */
     public $sender;
 
     /**
      * @var ParcelRequest[]
-     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\ParcelRequest>")
+     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\Request\ParcelRequest>")
      */
     public $parcels;
 
     /**
      * @var CustomAttributesRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\CustomAttributesRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\CustomAttributesRequest")
      */
     public $customAttributes;
 
     /**
      * @var CODRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\CODRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\CODRequest")
      */
     public $cod;
 
     /**
      * @var InsuranceRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\InsuranceRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\InsuranceRequest")
      */
     public $insurance;
 

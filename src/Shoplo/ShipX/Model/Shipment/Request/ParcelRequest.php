@@ -6,7 +6,7 @@
  * Time: 07:58
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -14,7 +14,7 @@ class ParcelRequest
 {
     /**
      * @var DimensionsRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\DimensionsRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\DimensionsRequest")
      */
     public $dimensions;
 
@@ -26,7 +26,7 @@ class ParcelRequest
 
     /**
      * @var WeightRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\WeightRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\WeightRequest")
      */
     public $weight;
 

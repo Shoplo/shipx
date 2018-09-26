@@ -6,7 +6,7 @@
  * Time: 07:52
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 

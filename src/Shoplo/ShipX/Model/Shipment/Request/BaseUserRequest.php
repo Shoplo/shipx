@@ -6,7 +6,7 @@
  * Time: 07:50
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -29,7 +29,7 @@ abstract class BaseUserRequest
     public $phone;
     /**
      * @var AddressRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\AddressRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\Shipment\Request\AddressRequest")
      */
     public $address;
     /**
@@ -41,5 +41,5 @@ abstract class BaseUserRequest
      * @var string
      * @Serializer\Type("string")
      */
-    public $LastName;
+    public $lastName;
 }

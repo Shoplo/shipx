@@ -6,9 +6,9 @@
  * Time: 07:57
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
-class SenderRequest extends BaseUserRequest
+class ReceiverRequest extends BaseUserRequest
 {
 
 }

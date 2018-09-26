@@ -6,17 +6,29 @@
  * Time: 08:00
  */
 
-namespace Shoplo\ShipX\Model\Shipment;
+namespace Shoplo\ShipX\Model\Shipment\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
-class WeightRequest
+class DimensionsRequest
 {
     /**
      * @var string
      * @Serializer\Type("string")
      */
-    public $amount;
+    public $height;
+
+    /**
+     * @var string
+     * @Serializer\Type("string")
+     */
+    public $length;
+
+    /**
+     * @var string
+     * @Serializer\Type("string")
+     */
+    public $width;
 
     /**
      * @var string

@@ -2,6 +2,7 @@
 
 namespace Shoplo\ShipX\Guzzle;
 
+use GuzzleHttp\Exception\RequestException;
 use Shoplo\ShipX\ShipXAdapterInterface;
 
 class GuzzleAdapter implements ShipXAdapterInterface
@@ -77,11 +78,11 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 $url,
                 [
                     'headers' => $headers,
-                    'query'   => http_build_query($data),
+                    'body'   => $data,
                 ]
             );
 
-            return json_decode($rsp->getBody()->getContents(), true);
+            return $rsp->getBody()->getContents();
         } catch (\Exception $e) {
             throw $e;
         }
@@ -104,13 +105,14 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 $url,
                 [
                     'headers' => $headers,
-                    'query'   => http_build_query($data),
+                    'body'   => $data,
                 ]
             );
 
-            return json_decode($rsp->getBody()->getContents(), true);
-        } catch (\Exception $e) {
-            throw $e;
+            return $rsp->getBody()->getContents();
+        } catch (RequestException $e) {
+            return $e->getResponse()->getBody()->getContents();
+//            throw $e;
         }
     }
 
@@ -132,9 +134,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 ]
             );
 
-            $json = json_decode($rsp->getBody(), true);
-
-            return $json;
+            return $rsp->getBody()->getContents();
         } catch (\Exception $e) {
             throw $e;
         }

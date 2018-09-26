@@ -9,6 +9,7 @@
 namespace Shoplo\ShipX\Resource;
 
 use Shoplo\ShipX\Model\Organization\OrganizationCollectionResponse;
+use Shoplo\ShipX\Model\Organization\OrganizationResponse;
 use Shoplo\ShipX\ShipXClient;
 
 class OrganizationResource
@@ -47,7 +48,7 @@ class OrganizationResource
     public function getOrganization($organizationId)
     {
         return $this->shipXClient->get(
-            OrganizationCollectionResponse::class,
+            OrganizationResponse::class,
             $this->getOrganizationsUrl($organizationId)
         );
     }

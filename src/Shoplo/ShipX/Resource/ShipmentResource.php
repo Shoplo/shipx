@@ -8,9 +8,9 @@
 
 namespace Shoplo\ShipX\Resource;
 
-use Shoplo\ShipX\Model\Organization\OrganizationCollectionResponse;
-use Shoplo\ShipX\Model\Shipment\ShipmentLabelRequest;
-use Shoplo\ShipX\Model\Shipment\ShipmentRequest;
+use Shoplo\ShipX\Model\Shipment\Request\ShipmentLabelRequest;
+use Shoplo\ShipX\Model\Shipment\Request\ShipmentRequest;
+use Shoplo\ShipX\Model\Shipment\Response\ShipmentResponse;
 use Shoplo\ShipX\ShipXClient;
 
 class ShipmentResource
@@ -45,14 +45,14 @@ class ShipmentResource
     public function createShipment(ShipmentRequest $request)
     {
         $response = $this->shipXClient->post(
+            $this->createShipmentUrl(),
             $this->shipXClient->serializer->serialize(
                 $request,
                 'json'
-            ),
-            $this->createShipmentUrl()
+            )
         );
 
-        return $this->shipXClient->serializer->deserialize($response, ShipmentRequest::class, 'json');
+        return $this->shipXClient->serializer->deserialize($response, ShipmentResponse::class, 'json');
     }
 
     public function cancelShipment($shipmentId)
@@ -65,11 +65,11 @@ class ShipmentResource
     public function getShipmentLabel(ShipmentLabelRequest $request)
     {
         return $this->shipXClient->post(
+            $this->labelShipmentUrl(),
             $this->shipXClient->serializer->serialize(
                 $request,
                 'json'
-            ),
-            $this->labelShipmentUrl()
+            )
         );
     }
 }

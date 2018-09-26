@@ -73,12 +73,12 @@ class ShipXClient
         return $this->serializer->deserialize($response, $type, 'json');
     }
 
-    public function post($url, array $data = [], array $headers = [])
+    public function post($url, $data, array $headers = [])
     {
         return $this->requestAdapter->post($url, $data, $headers);
     }
 
-    public function put($url, array $data = [], array $headers = [])
+    public function put($url, $data, array $headers = [])
     {
         return $this->requestAdapter->put($url, $data, $headers);
     }
