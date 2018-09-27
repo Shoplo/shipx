@@ -2,7 +2,7 @@
 
 namespace Shoplo\ShipX\Guzzle;
 
-use GuzzleHttp\Exception\RequestException;
+use Shoplo\ShipX\Exception\ExceptionManager;
 use Shoplo\ShipX\ShipXAdapterInterface;
 
 class GuzzleAdapter implements ShipXAdapterInterface
@@ -25,6 +25,9 @@ class GuzzleAdapter implements ShipXAdapterInterface
         $this->accessToken = $accessToken;
     }
 
+    /**
+     * @return array
+     */
     public function getHeaders()
     {
         return !$this->accessToken
@@ -36,12 +39,15 @@ class GuzzleAdapter implements ShipXAdapterInterface
     }
 
     /**
-     * @param       $url
+     * @param $url
      * @param array $parameters
      * @param array $headers
-     *
      * @return string
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\BackendException
+     * @throws \Shoplo\ShipX\Exception\NotFoundException
+     * @throws \Shoplo\ShipX\Exception\ValidationException
+     * @throws \Throwable
      */
     public function get($url, $parameters = [], $headers = [])
     {
@@ -56,18 +62,21 @@ class GuzzleAdapter implements ShipXAdapterInterface
             );
 
             return $rsp->getBody()->getContents();
-        } catch (\GuzzleHttp\Exception\ServerException $e) {
-            throw $e;
+        } catch (\Throwable $e) {
+            ExceptionManager::throwException($e);
         }
     }
 
     /**
-     * @param       $url
+     * @param $url
      * @param $data
      * @param array $headers
-     *
      * @return string
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\BackendException
+     * @throws \Shoplo\ShipX\Exception\NotFoundException
+     * @throws \Shoplo\ShipX\Exception\ValidationException
+     * @throws \Throwable
      */
     public function put($url, $data, $headers = [])
     {
@@ -78,23 +87,26 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 $url,
                 [
                     'headers' => $headers,
-                    'body'   => $data,
+                    'body'    => $data,
                 ]
             );
 
             return $rsp->getBody()->getContents();
-        } catch (\Exception $e) {
-            throw $e;
+        } catch (\Throwable $e) {
+            ExceptionManager::throwException($e);
         }
     }
 
     /**
-     * @param       $url
+     * @param $url
      * @param $data
      * @param array $headers
-     *
      * @return string
-     * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\BackendException
+     * @throws \Shoplo\ShipX\Exception\NotFoundException
+     * @throws \Shoplo\ShipX\Exception\ValidationException
+     * @throws \Throwable
      */
     public function post($url, $data, $headers = [])
     {
@@ -105,23 +117,24 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 $url,
                 [
                     'headers' => $headers,
-                    'body'   => $data,
+                    'body'    => $data,
                 ]
             );
 
             return $rsp->getBody()->getContents();
-        } catch (RequestException $e) {
-            return $e->getResponse()->getBody()->getContents();
-//            throw $e;
+        } catch (\Throwable $e) {
+            ExceptionManager::throwException($e);
         }
     }
 
     /**
-     * @param       $url
+     * @param $url
      * @param array $headers
-     *
-     * @return mixed
-     * @throws \Exception
+     * @return string
+     * @throws \Shoplo\ShipX\Exception\BackendException
+     * @throws \Shoplo\ShipX\Exception\NotFoundException
+     * @throws \Shoplo\ShipX\Exception\ValidationException
+     * @throws \Throwable
      */
     public function delete($url, $headers = [])
     {
@@ -135,8 +148,8 @@ class GuzzleAdapter implements ShipXAdapterInterface
             );
 
             return $rsp->getBody()->getContents();
-        } catch (\Exception $e) {
-            throw $e;
+        } catch (\Throwable $e) {
+            ExceptionManager::throwException($e);
         }
     }
 
