@@ -44,6 +44,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
      * @param array $headers
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\AuthorizationException
      * @throws \Shoplo\ShipX\Exception\BackendException
      * @throws \Shoplo\ShipX\Exception\NotFoundException
      * @throws \Shoplo\ShipX\Exception\ValidationException
@@ -73,6 +74,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
      * @param array $headers
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\AuthorizationException
      * @throws \Shoplo\ShipX\Exception\BackendException
      * @throws \Shoplo\ShipX\Exception\NotFoundException
      * @throws \Shoplo\ShipX\Exception\ValidationException
@@ -103,6 +105,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
      * @param array $headers
      * @return string
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Shoplo\ShipX\Exception\AuthorizationException
      * @throws \Shoplo\ShipX\Exception\BackendException
      * @throws \Shoplo\ShipX\Exception\NotFoundException
      * @throws \Shoplo\ShipX\Exception\ValidationException
@@ -131,6 +134,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
      * @param $url
      * @param array $headers
      * @return string
+     * @throws \Shoplo\ShipX\Exception\AuthorizationException
      * @throws \Shoplo\ShipX\Exception\BackendException
      * @throws \Shoplo\ShipX\Exception\NotFoundException
      * @throws \Shoplo\ShipX\Exception\ValidationException
