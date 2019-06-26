@@ -11,7 +11,7 @@ $guzzleAdapter = new \Shoplo\ShipX\Guzzle\GuzzleAdapter(
     new \GuzzleHttp\Client(['base_uri' => \Shoplo\ShipX\ShipXClient::API_SANDBOX_BASE_URI])
 );
 $guzzleAdapter->setAccessToken($accessToken);
-$client = new \Shoplo\ShipX\ShipXClient($guzzleAdapter, \JMS\Serializer\SerializerBuilder::create()->build(),\Shoplo\ShipX\ShipXClient::API_BASE_URI);
+$client = new \Shoplo\ShipX\ShipXClient($guzzleAdapter, \JMS\Serializer\SerializerBuilder::create()->build());
 
 //$organizationResource = new \Shoplo\ShipX\Resource\OrganizationResource($client);
 //$rsp = $organizationResource->getOrganizations();
@@ -55,10 +55,13 @@ $shipment->customAttributes = $customAttr;
 $shipment->service = 'inpost_locker_standard';
 
 $client->organizationId = '';
-$shipmentResource = new \Shoplo\ShipX\Resource\ShipmentResource($client);
+//$shipmentResource = new \Shoplo\ShipX\Resource\ShipmentResource($client);
+$serviceResource = new \Shoplo\ShipX\Resource\ServiceResource($client);
 try {
 
-    $rsp = $shipmentResource->createShipment($shipment);
+//    $rsp = $shipmentResource->createShipment($shipment);
+    $rsp = $serviceResource->getServices();
+    print_r($rsp);exit;
 } catch(\Shoplo\ShipX\Exception\BaseException $e) {
     print_r($e->getResponseParsed());exit;
 }
