@@ -8,7 +8,6 @@
 
 namespace Shoplo\ShipX\Resource;
 
-use Shoplo\ShipX\Model\Organization\OrganizationCollectionResponse;
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentLabelRequest;
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentRequest;
 use Shoplo\ShipX\Model\Shipment\Response\ShipmentResponse;
@@ -38,9 +37,14 @@ class ShipmentResource
         return sprintf('/v1/shipments/%s/buy', $id);
     }
 
-    private function labelShipmentUrl($id = null)
+    private function labelShipmentUrl()
     {
         return sprintf('/v1/organizations/%s/shipments/labels', $this->shipXClient->organizationId);
+    }
+
+    private function labelShipmentReturnUrl()
+    {
+        return sprintf('/v1/organizations/%s/shipments/return_labels', $this->shipXClient->organizationId);
     }
 
     private function getShipmentsUrl($id)
@@ -90,6 +94,17 @@ class ShipmentResource
     {
         return $this->shipXClient->post(
             $this->labelShipmentUrl(),
+            $this->shipXClient->serializer->serialize(
+                $request,
+                'json'
+            )
+        );
+    }
+
+    public function getShipmentReturnLabel(ShipmentLabelRequest $request)
+    {
+        return $this->shipXClient->post(
+            $this->labelShipmentReturnUrl(),
             $this->shipXClient->serializer->serialize(
                 $request,
                 'json'
