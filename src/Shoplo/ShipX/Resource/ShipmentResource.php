@@ -8,6 +8,7 @@
 
 namespace Shoplo\ShipX\Resource;
 
+use Shoplo\ShipX\Model\Organization\OrganizationCollectionResponse;
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentLabelRequest;
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentRequest;
 use Shoplo\ShipX\Model\Shipment\Response\ShipmentResponse;
@@ -32,9 +33,19 @@ class ShipmentResource
         return sprintf('/v1/organizations/%s/shipments', $this->shipXClient->organizationId);
     }
 
+    private function buyShipmentUrl($id = null)
+    {
+        return sprintf('/v1/shipments/%s/buy', $id);
+    }
+
     private function labelShipmentUrl($id = null)
     {
         return sprintf('/v1/organizations/%s/shipments/labels', $this->shipXClient->organizationId);
+    }
+
+    private function getShipmentsUrl($id)
+    {
+        return sprintf('/v1/organizations/%s/shipments?id=%s', $this->shipXClient->organizationId, $id);
     }
 
     private function shipmentUrl($shipmentId)
@@ -48,6 +59,19 @@ class ShipmentResource
             $this->createShipmentUrl(),
             $this->shipXClient->serializer->serialize(
                 $request,
+                'json'
+            )
+        );
+
+        return $this->shipXClient->serializer->deserialize($response, ShipmentResponse::class, 'json');
+    }
+
+    public function buyShipment($shipmentId, $offerId)
+    {
+        $response = $this->shipXClient->post(
+            $this->buyShipmentUrl($shipmentId),
+            $this->shipXClient->serializer->serialize(
+                ["offer_id" => $offerId],
                 'json'
             )
         );
@@ -70,6 +94,14 @@ class ShipmentResource
                 $request,
                 'json'
             )
+        );
+    }
+
+    public function getShipments($id)
+    {
+        return $this->shipXClient->get(
+            ShipmentResponse::class,
+            $this->getShipmentsUrl($id)
         );
     }
 }

@@ -38,11 +38,11 @@ class DispatchOrderResource
     public function createDispatchOrder(DispatchOrderRequest $request)
     {
         $response = $this->shipXClient->post(
+            $this->dispatchOrderUrl(),
             $this->shipXClient->serializer->serialize(
                 $request,
                 'json'
-            ),
-            $this->dispatchOrderUrl()
+            )
         );
 
         return $this->shipXClient->serializer->deserialize($response, DispatchOrderResponse::class, 'json');

@@ -9,6 +9,7 @@
 namespace Shoplo\ShipX\Model\DispatchOrder;
 
 use JMS\Serializer\Annotation as Serializer;
+use Shoplo\ShipX\Model\DispatchPoint\DispatchOrderAddressRequest;
 
 class DispatchOrderResponse
 {
@@ -31,20 +32,33 @@ class DispatchOrderResponse
     public $status;
 
     /**
-     * @var integer
-     * @Serializer\Type("integer")
+     * @var string
+     * @Serializer\Type("string")
      */
-    public $address;
-
-    /**
-     * @var string[]
-     * @Serializer\Type("array<string>")
-     */
-    public $shipments;
+    public $externalId;
 
     /**
      * @var string
      * @Serializer\Type("string")
+     */
+    public $price;
+
+    /**
+    /**
+     * @var DispatchOrderAddressRequest
+     * @Serializer\Type("Shoplo\ShipX\Model\DispatchPoint\DispatchOrderAddressRequest")
+     */
+    public $address;
+
+    /**
+     * @var DispatchOrderShipmentResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\DispatchOrder\DispatchOrderShipmentResponse>")
+     */
+    public $shipments;
+
+    /**
+     * @var DispatchOrderCommentResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\DispatchOrder\DispatchOrderCommentResponse>")
      */
     public $comments;
 
