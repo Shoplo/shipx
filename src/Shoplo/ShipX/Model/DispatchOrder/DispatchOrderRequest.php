@@ -14,6 +14,12 @@ use Shoplo\ShipX\Model\DispatchPoint\DispatchOrderAddressRequest;
 class DispatchOrderRequest
 {
     /**
+     * @var string
+     * @Serializer\Type("string")
+     */
+    public $dispatchPointId;
+
+    /**
      * @var string[]
      * @Serializer\Type("array<string>")
      */
