@@ -44,8 +44,8 @@ class DispatchOrderResponse
 
     /**
     /**
-     * @var DispatchOrderAddressRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\DispatchOrder\DispatchOrderAddressRequest")
+     * @var DispatchOrderAddressResponse
+     * @Serializer\Type("Shoplo\ShipX\Model\DispatchOrder\DispatchOrderAddressResponse")
      */
     public $address;
 
