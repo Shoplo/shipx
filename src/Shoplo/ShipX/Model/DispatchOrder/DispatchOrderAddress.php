@@ -6,18 +6,12 @@
  * Time: 13:14
  */
 
-namespace Shoplo\ShipX\Model\DispatchPoint;
+namespace Shoplo\ShipX\Model\DispatchOrder;
 
 use JMS\Serializer\Annotation as Serializer;
 
-class DispatchOrderAddressRequest
+class DispatchOrderAddress
 {
-    /**
-     * @var string
-     * @Serializer\Type("string")
-     */
-    public $id;
-
     /**
      * @var string
      * @Serializer\Type("string")

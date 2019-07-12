@@ -9,7 +9,6 @@
 namespace Shoplo\ShipX\Model\DispatchOrder;
 
 use JMS\Serializer\Annotation as Serializer;
-use Shoplo\ShipX\Model\DispatchPoint\DispatchOrderAddressRequest;
 
 class DispatchOrderRequest
 {
@@ -33,7 +32,7 @@ class DispatchOrderRequest
 
     /**
      * @var DispatchOrderAddressRequest
-     * @Serializer\Type("Shoplo\ShipX\Model\DispatchPoint\DispatchOrderAddressRequest")
+     * @Serializer\Type("Shoplo\ShipX\Model\DispatchOrder\DispatchOrderAddressRequest")
      */
     public $address;
 }
