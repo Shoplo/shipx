@@ -10,7 +10,7 @@ namespace Shoplo\ShipX\Model\DispatchOrder;
 
 use JMS\Serializer\Annotation as Serializer;
 
-class DispatchOrderAddressRequest extends DispatchOrderAddress
+class DispatchOrderAddressResponse extends DispatchOrderAddress
 {
     /**
      * @var string
