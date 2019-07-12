@@ -74,12 +74,6 @@ class ShipmentResponse extends ShipmentRequest
     public $trackingNumber;
 
     /**
-     * @var string[]
-     * @Serializer\Type("array<string>")
-     */
-    public $transactions;
-
-    /**
      * @var string
      * @Serializer\Type("string")
      */

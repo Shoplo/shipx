@@ -10,6 +10,7 @@ namespace Shoplo\ShipX\Resource;
 
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentLabelRequest;
 use Shoplo\ShipX\Model\Shipment\Request\ShipmentRequest;
+use Shoplo\ShipX\Model\Shipment\Response\ShipmentCollectionResponse;
 use Shoplo\ShipX\Model\Shipment\Response\ShipmentResponse;
 use Shoplo\ShipX\ShipXClient;
 
@@ -115,7 +116,7 @@ class ShipmentResource
     public function getShipments($id)
     {
         return $this->shipXClient->get(
-            ShipmentResponse::class,
+            ShipmentCollectionResponse::class,
             $this->getShipmentsUrl($id)
         );
     }
