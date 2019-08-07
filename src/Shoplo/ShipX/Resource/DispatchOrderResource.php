@@ -8,6 +8,8 @@
 
 namespace Shoplo\ShipX\Resource;
 
+use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderCollectionRequest;
+use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderCollectionResponse;
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderRequest;
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderResponse;
 use Shoplo\ShipX\ShipXClient;
@@ -55,6 +57,16 @@ class DispatchOrderResource
             $this->dispatchOrderUrl($dispatchOrderId)
         );
     }
+
+    public function getDispatchOrderCollection(DispatchOrderCollectionRequest $request)
+    {
+        return $this->shipXClient->get(
+            DispatchOrderCollectionResponse::class,
+            $this->dispatchOrderUrl(null),
+            $request->converToParams()
+        );
+    }
+
 
     public function cancelDispatchOrder($dispatchOrderId)
     {

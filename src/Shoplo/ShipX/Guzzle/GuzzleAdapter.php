@@ -59,6 +59,7 @@ class GuzzleAdapter implements ShipXAdapterInterface
                 $url,
                 [
                     'headers' => $headers,
+                    'query' => $parameters
                 ]
             );
 
