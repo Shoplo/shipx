@@ -16,11 +16,11 @@ class CODRequest
      * @var float
      * @Serializer\Type("float")
      */
-    public $codAmount;
+    public $amount;
 
     /**
      * @var string
      * @Serializer\Type("string")
      */
-    public $codCurrency = 'PLN';
+    public $currency = 'PLN';
 }

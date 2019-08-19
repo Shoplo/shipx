@@ -16,11 +16,11 @@ class InsuranceRequest
      * @var float
      * @Serializer\Type("float")
      */
-    public $insuranceAmount;
+    public $amount;
 
     /**
      * @var string
      * @Serializer\Type("string")
      */
-    public $insuranceCurrency = 'PLN';
+    public $currency = 'PLN';
 }
