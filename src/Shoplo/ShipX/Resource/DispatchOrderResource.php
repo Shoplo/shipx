@@ -10,6 +10,7 @@ namespace Shoplo\ShipX\Resource;
 
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderCollectionRequest;
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderCollectionResponse;
+use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderManifestRequest;
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderRequest;
 use Shoplo\ShipX\Model\DispatchOrder\DispatchOrderResponse;
 use Shoplo\ShipX\ShipXClient;
@@ -35,6 +36,15 @@ class DispatchOrderResource
         }
 
         return sprintf('/v1/dispatch_orders/%s', $id);
+    }
+
+    private function dispatchOrderManifestUrl($id = null)
+    {
+        if (null !== $id) {
+
+            return sprintf('/v1/dispatch_orders/%s/printout', $id);
+        }
+        return sprintf('/v1/organizations/%s/dispatch_orders/printouts', $this->shipXClient->organizationId);
     }
 
     public function createDispatchOrder(DispatchOrderRequest $request)
@@ -67,11 +77,27 @@ class DispatchOrderResource
         );
     }
 
-
     public function cancelDispatchOrder($dispatchOrderId)
     {
         return $this->shipXClient->delete(
             $this->dispatchOrderUrl($dispatchOrderId)
+        );
+    }
+
+    public function getDispatchManifest(DispatchOrderManifestRequest $request)
+    {
+        if ($request->dispatchOrderId) {
+
+            $url = $this->dispatchOrderManifestUrl($request->dispatchOrderId);
+        } else {
+
+            $url = $this->dispatchOrderManifestUrl();
+        }
+
+        return $this->shipXClient->get(
+            ShipXClient::MANIFEST_TYPE,
+            $url,
+            $request->converToParams()
         );
     }
 }

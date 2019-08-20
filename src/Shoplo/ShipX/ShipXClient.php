@@ -15,6 +15,7 @@ class ShipXClient
 {
     const API_BASE_URI = 'https://api-shipx-pl.easypack24.net';
     const API_SANDBOX_BASE_URI = 'https://sandbox-api-shipx-pl.easypack24.net';
+    const MANIFEST_TYPE = 'manifest';
 
     /** @var ShipXAdapterInterface */
     public $requestAdapter;
@@ -50,7 +51,9 @@ class ShipXClient
             $parameters,
             $headers
         );
-
+        if ($type === self::MANIFEST_TYPE) {
+            return $response;
+        }
         return $this->serializer->deserialize($response, $type, 'json');
     }
 
