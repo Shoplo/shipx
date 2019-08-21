@@ -14,10 +14,12 @@
     "jms/serializer": "^3.0"
   },
   "require-dev": {
-    "guzzlehttp/guzzle": "^6.3"
+    "guzzlehttp/guzzle": "^6.3",
+    "symfony/http-client": "^4.3"
   },
   "suggest": {
-    "guzzlehttp/guzzle": "For GuzzleAdapter"
+    "guzzlehttp/guzzle": "For GuzzleAdapter",
+    "symfony/http-client": "For HttpClientAdapter"
   },
   "autoload": {
     "psr-4": {
