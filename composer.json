@@ -11,8 +11,13 @@
   "license": "MIT",
   "require": {
     "php": ">=7.2",
-    "guzzlehttp/oauth-subscriber": "^0.3",
     "jms/serializer": "^3.0"
+  },
+  "require-dev": {
+    "guzzlehttp/guzzle": "^6.3"
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "For GuzzleAdapter"
   },
   "autoload": {
     "psr-4": {

@@ -9,7 +9,6 @@
 namespace Shoplo\ShipX;
 
 use JMS\Serializer\Serializer;
-use Shoplo\ShipX\Guzzle\GuzzleAdapter;
 
 class ShipXClient
 {
