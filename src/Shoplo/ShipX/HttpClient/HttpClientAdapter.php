@@ -50,7 +50,7 @@ class HttpClientAdapter implements ShipXAdapterInterface
                 'query' => $parameters,
             ]);
 
-            return $response->toArray();
+            return $response->getContent();
         } catch (\Throwable $e) {
             ExceptionManager::throwException($e);
         }
@@ -64,7 +64,7 @@ class HttpClientAdapter implements ShipXAdapterInterface
                 'body' => $data,
             ]);
 
-            return $response->toArray();
+            return $response->getContent();
         } catch (\Throwable $e) {
             ExceptionManager::throwException($e);
         }
@@ -78,7 +78,7 @@ class HttpClientAdapter implements ShipXAdapterInterface
                 'body' => $data,
             ]);
 
-            return $response->toArray();
+            return $response->getContent();
         } catch (\Throwable $e) {
             ExceptionManager::throwException($e);
         }
@@ -91,7 +91,7 @@ class HttpClientAdapter implements ShipXAdapterInterface
                 'headers' => array_merge($headers, $this->getHeaders()),
             ]);
 
-            return $response->toArray();
+            return $response->getContent();
         } catch (\Throwable $e) {
             ExceptionManager::throwException($e);
         }

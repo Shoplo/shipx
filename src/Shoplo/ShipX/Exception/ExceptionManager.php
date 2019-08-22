@@ -8,14 +8,22 @@
 
 namespace Shoplo\ShipX\Exception;
 
+use Symfony\Contracts\HttpClient\ResponseInterface;
+
 class ExceptionManager
 {
     public static function throwException(\Throwable $e)
     {
         $body = null;
+
         if (method_exists($e, 'getResponse')) {
-            $body = json_decode($e->getResponse()->getBody()->getContents(), true);
+            if ($e->getResponse() instanceof ResponseInterface) {
+                $body = $e->getResponse()->toArray(false);
+            } else {
+                $body = json_decode($e->getResponse()->getBody()->getContents(), true);
+            }
         }
+
         switch ($e->getCode()) {
             case 400:
                 throw new ValidationException($e, $body);
