@@ -20,8 +20,8 @@ class ShipmentResponse extends ShipmentRequest
     public $href;
 
     /**
-     * @var string
-     * @Serializer\Type("string")
+     * @var int
+     * @Serializer\Type("int")
      */
     public $id;
 
