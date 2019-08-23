@@ -48,9 +48,9 @@ class ShipmentResource
         return sprintf('/v1/organizations/%s/shipments/return_labels', $this->shipXClient->organizationId);
     }
 
-    private function getShipmentsUrl($id)
+    private function getShipmentsUrl()
     {
-        return sprintf('/v1/organizations/%s/shipments?id=%s', $this->shipXClient->organizationId, $id);
+        return sprintf('/v1/organizations/%s/shipments', $this->shipXClient->organizationId);
     }
 
     private function shipmentUrl($shipmentId)
@@ -117,7 +117,8 @@ class ShipmentResource
     {
         return $this->shipXClient->get(
             ShipmentCollectionResponse::class,
-            $this->getShipmentsUrl($id)
+            $this->getShipmentsUrl(),
+            ['id' => $id]
         );
     }
 }
