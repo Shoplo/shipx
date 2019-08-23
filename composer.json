@@ -24,7 +24,10 @@
   "autoload": {
     "psr-4": {
       "Shoplo\\ShipX\\": "src/Shoplo/ShipX"
-    }
+    },
+    "files": [
+      "autoload.php"
+    ]
   },
   "extra": {
     "branch-alias": {

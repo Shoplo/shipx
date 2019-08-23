@@ -2,8 +2,6 @@
 //echo phpinfo();exit;
 require_once __DIR__.'/vendor/autoload.php';
 
-Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-
 ini_set('display_errors', 'TRUE');
 error_reporting(E_ALL);
 
