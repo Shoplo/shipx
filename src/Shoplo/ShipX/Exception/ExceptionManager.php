@@ -1,20 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: adrianadamiec
- * Date: 12.05.2017
- * Time: 15:19
- */
 
 namespace Shoplo\ShipX\Exception;
 
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class ExceptionManager
 {
-    public static function throwException(\Throwable $e)
+    public static function throwException(\Throwable $e): void
     {
         $body = null;
+
+        //External server error
+        if ($e instanceof TransportExceptionInterface) {
+            throw new ServerException($e);
+        }
 
         if (method_exists($e, 'getResponse')) {
             if ($e->getResponse() instanceof ResponseInterface) {
