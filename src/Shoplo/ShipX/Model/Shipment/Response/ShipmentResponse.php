@@ -78,4 +78,16 @@ class ShipmentResponse extends ShipmentRequest
      * @Serializer\Type("string")
      */
     public $externalCustomerId;
+
+    /**
+     * @var TransactionResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\Response\TransactionResponse>")
+     */
+    public $transactions;
+
+    /**
+     * @var OfferResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\Response\OfferResponse>")
+     */
+    public $offers;
 }
