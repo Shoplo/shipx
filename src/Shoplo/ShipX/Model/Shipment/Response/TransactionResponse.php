@@ -6,6 +6,8 @@ use JMS\Serializer\Annotation as Serializer;
 
 class TransactionResponse
 {
+    public const STATUS_FAILURE = 'failure';
+
     /**
      * @var string
      * @Serializer\Type("string")
