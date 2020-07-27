@@ -18,7 +18,11 @@ class ExceptionManager
 
         if (method_exists($e, 'getResponse')) {
             if ($e->getResponse() instanceof ResponseInterface) {
-                $body = $e->getResponse()->toArray(false);
+                $headers = $e->getResponse()->getHeaders(false);
+                $contentType = $headers['content-type'][0] ?? 'application/json';
+                if ($contentType === 'application/json') {
+                    $body = $e->getResponse()->toArray(false);
+                }
             } else {
                 $body = json_decode($e->getResponse()->getBody()->getContents(), true);
             }
