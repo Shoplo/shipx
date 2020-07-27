@@ -4,11 +4,18 @@ namespace Shoplo\ShipX\Guzzle;
 
 use Shoplo\ShipX\Exception\ExceptionManager;
 use Shoplo\ShipX\ShipXAdapterInterface;
+use GuzzleHttp\Client;
 
 class GuzzleAdapter implements ShipXAdapterInterface
 {
+    /**
+     * @var string|null
+     */
     private $accessToken;
-    /** @var  \GuzzleHttp\Client */
+
+    /**
+     * @var Client
+     */
     private $guzzle;
 
     public function __construct(\GuzzleHttp\Client $guzzle, $accessToken = null)

@@ -2,17 +2,29 @@
 
 namespace Shoplo\ShipX\Exception;
 
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\ResponseInterface;
+
 class ExceptionManager
 {
-    public static function throwException(\Throwable $e)
+    public static function throwException(\Throwable $e): void
     {
         $body = null;
 
+        //External server error
+        if ($e instanceof TransportExceptionInterface) {
+            throw new ServerException($e);
+        }
+
         if (method_exists($e, 'getResponse')) {
-            $headers = $e->getResponse()->getHeaders();
-            $contentType = $headers['content-type'][0] ?? 'application/json';
-            if ($contentType === 'application/json') {
-                $body = \json_decode($e->getResponse()->getBody()->getContents(), true);
+            if ($e->getResponse() instanceof ResponseInterface) {
+                $headers = $e->getResponse()->getHeaders(false);
+                $contentType = $headers['content-type'][0] ?? 'application/json';
+                if ($contentType === 'application/json') {
+                    $body = $e->getResponse()->toArray(false);
+                }
+            } else {
+                $body = json_decode($e->getResponse()->getBody()->getContents(), true);
             }
         }
 
@@ -21,7 +33,6 @@ class ExceptionManager
                 throw new ValidationException($e, $body);
                 break;
             case 401:
-            case 403:
                 throw new AuthorizationException($e, $body);
                 break;
             case 404:
