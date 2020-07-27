@@ -20,8 +20,8 @@ class ShipmentResponse extends ShipmentRequest
     public $href;
 
     /**
-     * @var string
-     * @Serializer\Type("string")
+     * @var int
+     * @Serializer\Type("int")
      */
     public $id;
 
@@ -78,4 +78,16 @@ class ShipmentResponse extends ShipmentRequest
      * @Serializer\Type("string")
      */
     public $externalCustomerId;
+
+    /**
+     * @var TransactionResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\Response\TransactionResponse>")
+     */
+    public $transactions;
+
+    /**
+     * @var OfferResponse[]
+     * @Serializer\Type("array<Shoplo\ShipX\Model\Shipment\Response\OfferResponse>")
+     */
+    public $offers;
 }

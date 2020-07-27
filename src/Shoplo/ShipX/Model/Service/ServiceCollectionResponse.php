@@ -11,7 +11,7 @@ namespace Shoplo\ShipX\Model\Service;
 use JMS\Serializer\Annotation as Serializer;
 use Shoplo\ShipX\Model\BaseCollectionResponse;
 
-class ServiceCollectionResponse extends BaseCollectionResponse
+class ServiceCollectionResponse
 {
     /**
      * @var ServiceResponse[]

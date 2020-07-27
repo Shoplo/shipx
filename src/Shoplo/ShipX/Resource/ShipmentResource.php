@@ -104,12 +104,13 @@ class ShipmentResource
 
     public function getShipmentReturnLabel(ShipmentLabelRequest $request)
     {
-        return $this->shipXClient->post(
+        return $this->shipXClient->get(
+            ShipXClient::MANIFEST_TYPE,
             $this->labelShipmentReturnUrl(),
-            $this->shipXClient->serializer->serialize(
-                $request,
-                'json'
-            )
+            [
+                'format' => $request->format,
+                'shipment_ids' => $request->shipmentIds,
+            ]
         );
     }
 

@@ -7,24 +7,31 @@
     "shipx",
     "inpost"
   ],
-  "homepage": "http://github.com/Shoplo/shipx",
+  "homepage": "https://github.com/Shoplo/shipx",
   "license": "MIT",
   "require": {
-    "php": ">=7.1",
-    "guzzlehttp/oauth-subscriber": "^0.3.0",
-    "jms/serializer": "^1.13"
+    "php": ">=7.2",
+    "jms/serializer": "^3.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7"
+    "guzzlehttp/guzzle": "^6.3",
+    "symfony/http-client": "^4.3"
+  },
+  "suggest": {
+    "guzzlehttp/guzzle": "For GuzzleAdapter",
+    "symfony/http-client": "For HttpClientAdapter"
   },
   "autoload": {
     "psr-4": {
       "Shoplo\\ShipX\\": "src/Shoplo/ShipX"
-    }
+    },
+    "files": [
+      "autoload.php"
+    ]
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0.x-dev"
+      "dev-master": "1.1.x-dev"
     }
   }
 }
