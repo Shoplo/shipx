@@ -1,28 +1,33 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: adrianadamiec
- * Date: 12.05.2017
- * Time: 15:06
- */
 
 namespace Shoplo\ShipX\Exception;
 
 class BaseException extends \Exception
 {
+    /**
+     * @var string|null
+     */
     protected $responseParsed;
+
+    /**
+     * @var array|null
+     */
+    private $body;
 
     public function __construct(\Throwable $previous, $body = null)
     {
         $code = $previous->getCode();
-        $msg  = $previous->getMessage();
+        $msg = $previous->getMessage();
+        $this->body = $body;
 
         if (null !== $body) {
             $code = $body['status'];
-            $msg  = $body['message'];
+            $msg = $body['message'];
             $body = $body['details'];
+
+            $this->responseParsed = serialize($body);
         }
-        $this->responseParsed = serialize($body);
+
         parent::__construct(
             $msg,
             $code,
@@ -35,6 +40,11 @@ class BaseException extends \Exception
      */
     public function getResponseParsed(): array
     {
-        return unserialize($this->responseParsed);
+        return unserialize($this->responseParsed) ?? [];
+    }
+
+    public function getBody(): array
+    {
+        return $this->body ?? [];
     }
 }
