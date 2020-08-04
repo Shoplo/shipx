@@ -40,7 +40,9 @@ class BaseException extends \Exception
      */
     public function getResponseParsed(): array
     {
-        return unserialize($this->responseParsed) ?? [];
+        $parsed = unserialize($this->responseParsed);
+
+        return $parsed === false ? [] : $parsed;
     }
 
     public function getBody(): array
