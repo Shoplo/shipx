@@ -20,7 +20,8 @@ class ExceptionManager
             if ($e->getResponse() instanceof ResponseInterface) {
                 $headers = $e->getResponse()->getHeaders(false);
                 $contentType = $headers['content-type'][0] ?? 'application/json';
-                if ($contentType === 'application/json') {
+
+                if (false !== strpos($contentType,'application/json')) {
                     $body = $e->getResponse()->toArray(false);
                 }
             } else {
