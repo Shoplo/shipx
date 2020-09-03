@@ -23,7 +23,14 @@ class BaseException extends \Exception
         if (null !== $body) {
             $code = $body['status'];
             $msg = $body['message'];
-            $body = $body['details'];
+
+            if (!empty($body['details'])) {
+                $body = $body['details'];
+            } elseif (array_key_exists('error', $body)) {
+                $body = [
+                    $body['error'] => $body['message'],
+                ];
+            }
 
             $this->responseParsed = serialize($body);
         }
