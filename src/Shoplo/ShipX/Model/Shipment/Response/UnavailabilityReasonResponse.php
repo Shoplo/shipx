@@ -11,4 +11,10 @@ class UnavailabilityReasonResponse
      * @Serializer\Type("string")
      */
     public $receiver;
+
+    /**
+     * @var string|null
+     * @Serializer\Type("string")
+     */
+    public $trucker;
 }
