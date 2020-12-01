@@ -17,11 +17,11 @@ class ExceptionManager
         }
 
         if (method_exists($e, 'getResponse')) {
-            if ($e->getResponse() instanceof ResponseInterface) {
-                $headers = $e->getResponse()->getHeaders(false);
-                $contentType = $headers['content-type'][0] ?? 'application/json';
 
-                if (false !== strpos($contentType,'application/json')) {
+            if ($e->getResponse() instanceof ResponseInterface) {
+
+                if (false !== strpos(self::getResponseContentType($e),'application/json')) {
+
                     $body = $e->getResponse()->toArray(false);
                 }
             } else {
@@ -45,5 +45,11 @@ class ExceptionManager
             default:
                 throw $e;
         }
+    }
+
+    private static function getResponseContentType(\Exception $e)
+    {
+        $headers = $e->getResponse()->getHeaders(false);
+        return $headers['content-type'][0] ?? 'application/json';
     }
 }

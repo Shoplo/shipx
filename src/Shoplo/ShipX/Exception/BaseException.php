@@ -21,11 +21,12 @@ class BaseException extends \Exception
         $this->body = $body;
 
         if (null !== $body) {
+
             $code = $body['status'];
             $msg = $body['message'];
 
             if (!empty($body['details'])) {
-                $body = $body['details'];
+                $msg .= $body['details'];
             } elseif (array_key_exists('error', $body)) {
                 $body = [
                     $body['error'] => $body['message'],
